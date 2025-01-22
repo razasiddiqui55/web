@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description"
-    content="Hi, I'm Hammad, a computer engineer passionate about building innovative tech solutions.">
+    content="I am Hammad Siddiqui, a computer science student focused on developing a Flutter app..">
 
   <!-- Viewport meta tag for responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Hammad Dev">
+  <meta name="apple-mobile-web-app-title" content="Hammad PortFolio">
   <link rel="apple-touch-icon" sizes="192x192" href="icons/Icon-192.png">
   <link rel="apple-touch-icon" sizes="512x512" href="icons/Icon-512.png">
   <link rel="apple-touch-icon" sizes="192x192" href="icons/Icon-maskable-192.png" rel="mask-icon">
@@ -26,9 +26,10 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="shortcut icon" href="favicon.png">
 
-  <title>Hammad Dev</title>
+  <title>Hammad PortFolio</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#212121">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
   <!-- <script>
     window.addEventListener('load', function() {
         document.querySelector('meta[name="theme-color"]').setAttribute('content', '#FF5733'); // Replace with your preferred color
@@ -42,7 +43,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      min-height: 100%;
     }
 
     .card {
@@ -60,6 +61,7 @@
       transition: opacity 0.2s ease-out, transform 0.2s ease-out;
       box-sizing: border-box;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
@@ -81,22 +83,22 @@
       border-radius: 8px;
     }
 
-    .words {
-      overflow: hidden;
-      height: 40px;
-      position: relative;
-    }
+<!--    .words {-->
+<!--      overflow: hidden;-->
+<!--      height: 40px;-->
+<!--      position: relative;-->
+<!--    }-->
 
-    .words::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(var(--bg-color) 10%,
-          transparent 30%,
-          transparent 70%,
-          var(--bg-color) 90%);
-      pointer-events: none;
-    }
+<!--    .words::after {-->
+<!--      content: "";-->
+<!--      position: absolute;-->
+<!--      inset: 0;-->
+<!--      background: linear-gradient(var(&#45;&#45;bg-color) 10%,-->
+<!--          transparent 30%,-->
+<!--          transparent 70%,-->
+<!--          var(&#45;&#45;bg-color) 90%);-->
+<!--      pointer-events: none;-->
+<!--    }-->
 
     @media screen and (max-width: 700px) {
       .loader {
@@ -121,12 +123,18 @@
     .word {
       display: block;
       height: 100%;
-      padding-left: 6px;
+      // padding-left: 6px;
       color: #956afa;
       overflow: hidden;
-      animation: spin_4991 10s infinite;
+      // animation: spin_4991 10s infinite;
       line-height: 40px;
+      animation: revealText 2s steps(9, end) forwards;
     }
+
+    @keyframes revealText {
+  from { width: 0; }
+  to { width: 100%; }
+}
 
     .loader p {
       margin: 0;
@@ -146,6 +154,11 @@
 
     #flutter-container.show {
       opacity: 1;
+    }
+
+    .lottie-container {
+      width: 250px;
+      height: 200px;
     }
 
     @keyframes spin_4991 {
@@ -199,26 +212,33 @@
 <body>
   <div id="flutter-container"></div>
   <div class="card">
+    <div class="lottie-container" id="lottie-animation"></div>
     <div class="loader">
-      <p aria-live="polite">loading</p>
+      <p aria-live="polite">Loading</p>
       <div class="words">
-        <span class="word">Widgets</span>
-        <span class="word">UI Components</span>
-        <span class="word">Animations</span>
-        <span class="word">Assets</span>
-        <span class="word">Navigation</span>
         <span class="word">Portfolio</span>
-        <span class="word">Projects</span>
-        <span class="word">Skills</span>
-        <span class="word">Experience</span>
-        <span class="word">Education</span>
-        <span class="word">Widgets</span>
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
+<!--        <span class="word">Portfolio</span>-->
       </div>
     </div>
   </div>
 
   <script src="flutter_bootstrap.js" async></script>
   <script>
+  lottie.loadAnimation({
+      container: document.getElementById("lottie-animation"),
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "https://assets1.lottiefiles.com/packages/lf20_w51pcehl.json" // Lottie Animation JSON URL
+    });
     // Handle smooth transition when Flutter app is ready
     window.addEventListener('flutter-first-frame', function () {
       console.log('Flutter first frame event fired'); // Debugging log
