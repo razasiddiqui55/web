@@ -1,144 +1,120 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <base href="/web/"/>
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description"
-    content="I am Hammad Siddiqui, a computer science student focused on developing a Flutter app..">
-
-  <!-- Viewport meta tag for responsive design -->
+  <meta name="description" content="I am Hammad Siddiqui, a computer science student focused on developing a Flutter app.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- iOS meta tags & icons -->
+  <!-- iOS Meta -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Hammad PortFolio">
+  <meta name="apple-mobile-web-app-title" content="Hammad Portfolio">
   <link rel="apple-touch-icon" sizes="192x192" href="icons/Icon-192.png">
   <link rel="apple-touch-icon" sizes="512x512" href="icons/Icon-512.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="icons/Icon-maskable-192.png" rel="mask-icon">
-  <link rel="apple-touch-icon" sizes="512x512" href="icons/Icon-maskable-512.png" rel="mask-icon">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
-
-  <title>Hammad PortFolio</title>
+  <link rel="icon" href="favicon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#212121">
+  <title>Hammad Portfolio</title>
+
+  <!-- Lottie & Typed.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-  <!-- <script>
-    window.addEventListener('load', function() {
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#FF5733'); // Replace with your preferred color
-    });
-</script> -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
   <style>
     body {
       margin: 0;
       padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #212121;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #956afa 0%, transparent 70%);
+      filter: blur(120px);
+      animation: pulse 6s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
     }
 
     .card {
-      --bg-color: #212121;
-      background-color: var(--bg-color);
+      background-color: #212121;
       width: 100vw;
       min-height: 100vh;
-      /* Keep the minimum height */
-      max-height: 100vh;
-      /* Prevent it from exceeding viewport height */
-      padding: 2rem 3rem;
-      position: relative;
-      z-index: 1;
-      opacity: 1;
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     .card.hide {
       opacity: 0;
-      transform: scale(1.1);
+      transform: scale(1.05);
       pointer-events: none;
     }
 
+    .lottie-container {
+      width: 250px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
     .loader {
-      color: rgb(124, 124, 124);
-      font-family: "Poppins", sans-serif;
+      color: rgb(200, 200, 200);
+      font-size: 24px;
       font-weight: 500;
-      font-size: 25px;
       display: flex;
       align-items: center;
       gap: 8px;
-      border-radius: 8px;
     }
 
-<!--    .words {-->
-<!--      overflow: hidden;-->
-<!--      height: 40px;-->
-<!--      position: relative;-->
-<!--    }-->
-
-<!--    .words::after {-->
-<!--      content: "";-->
-<!--      position: absolute;-->
-<!--      inset: 0;-->
-<!--      background: linear-gradient(var(&#45;&#45;bg-color) 10%,-->
-<!--          transparent 30%,-->
-<!--          transparent 70%,-->
-<!--          var(&#45;&#45;bg-color) 90%);-->
-<!--      pointer-events: none;-->
-<!--    }-->
-
-    @media screen and (max-width: 700px) {
-      .loader {
-        font-size: 20px;
-        /* Adjust font size for smaller screens */
-        padding: 1rem;
-        /* Adjust padding as necessary */
-      }
-
-      .words {
-        height: 40px;
-        /* Adjust height for the words */
-      }
-
-      .words::after {
-
-        background: none;
-
-      }
-    }
-
-    .word {
-      display: block;
-      height: 100%;
-      // padding-left: 6px;
+    .typed {
       color: #956afa;
-      overflow: hidden;
-      // animation: spin_4991 10s infinite;
-      line-height: 40px;
-      animation: revealText 2s steps(9, end) forwards;
+      font-weight: 600;
     }
 
-    @keyframes revealText {
-  from { width: 0; }
-  to { width: 100%; }
-}
+    .progress-bar {
+      width: 80%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-top: 20px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
 
-    .loader p {
-      margin: 0;
-      padding: 0;
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #956afa;
+      animation: load 3s linear forwards;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
     }
 
     #flutter-container {
@@ -156,107 +132,62 @@
       opacity: 1;
     }
 
-    .lottie-container {
-      width: 250px;
-      height: 200px;
-    }
-
-    @keyframes spin_4991 {
-      0% {
-        transform: translateY(0%);
-      }
-
-      10% {
-        transform: translateY(-100%);
-      }
-
-      20% {
-        transform: translateY(-200%);
-      }
-
-      30% {
-        transform: translateY(-300%);
-      }
-
-      40% {
-        transform: translateY(-400%);
-      }
-
-      50% {
-        transform: translateY(-500%);
-      }
-
-      60% {
-        transform: translateY(-600%);
-      }
-
-      70% {
-        transform: translateY(-700%);
-      }
-
-      80% {
-        transform: translateY(-800%);
-      }
-
-      90% {
-        transform: translateY(-900%);
-      }
-
-      100% {
-        transform: translateY(-1000%);
+    @media screen and (max-width: 700px) {
+      .loader {
+        font-size: 18px;
+        padding: 1rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <div id="flutter-container"></div>
-  <div class="card">
-    <div class="lottie-container" id="lottie-animation"></div>
-    <div class="loader">
-      <p aria-live="polite">Loading</p>
-      <div class="words">
-        <span class="word">Portfolio</span>
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-<!--        <span class="word">Portfolio</span>-->
-      </div>
-    </div>
+<div id="flutter-container"></div>
+
+<div class="card">
+  <div class="lottie-container" id="lottie-animation"></div>
+
+  <div class="loader">
+    <p>Loading&nbsp;<span id="typed-text" class="typed"></span></p>
   </div>
 
-  <script src="flutter_bootstrap.js" async></script>
-  <script>
-  lottie.loadAnimation({
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+</div>
+
+<script src="flutter_bootstrap.js" async></script>
+
+<script>
+    // Load Lottie animation
+    lottie.loadAnimation({
       container: document.getElementById("lottie-animation"),
       renderer: "svg",
       loop: true,
       autoplay: true,
-      path: "https://assets1.lottiefiles.com/packages/lf20_w51pcehl.json" // Lottie Animation JSON URL
+      path: "https://assets1.lottiefiles.com/packages/lf20_w51pcehl.json"
     });
-    // Handle smooth transition when Flutter app is ready
+
+    // Typing animation
+    new Typed("#typed-text", {
+      strings: ["Portfolio...", "Flutter App...", "Experience..."],
+      typeSpeed: 60,
+      backSpeed: 30,
+      loop: true
+    });
+
+    // Show Flutter when ready
     window.addEventListener('flutter-first-frame', function () {
-      console.log('Flutter first frame event fired'); // Debugging log
       const card = document.querySelector('.card');
       const flutterContainer = document.querySelector('#flutter-container');
 
-      // Add hide class to card for fade-out effect
       card.classList.add('hide');
-
-      // Show Flutter app with fade-in effect
       flutterContainer.classList.add('show');
 
-      // Optional: Remove the loader from DOM after transition
       setTimeout(() => {
         card.style.display = 'none';
-      }, 1000); // Wait for transition to complete
+      }, 1000);
     });
   </script>
 </body>
-
 </html>
